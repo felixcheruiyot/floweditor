@@ -2,7 +2,7 @@ import mutate from 'immutability-helper';
 import { combineReducers } from 'redux';
 import { hasErrors } from '~/components/flow/actions/helpers';
 import { SelectOption } from '~/components/form/select/SelectElement';
-import { Type } from '~/config';
+import { Type } from '~/config/interfaces';
 import { Scheme } from '~/config/typeConfigs';
 import { AnyAction } from '~/flowTypes';
 import { LocalizedObject } from '~/services/Localization';

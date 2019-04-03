@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Select from 'react-select';
 import * as styles from '~/components/nodeeditor/TypeList.scss';
-import { Type } from '~/config';
 import { fakePropType } from '~/config/ConfigProvider';
 import { filterTypeConfigs } from '~/config/helpers';
+import { Type } from '~/config/interfaces';
 import { configsToDisplay } from '~/config/typeConfigs';
 import { large } from '~/utils/reactselect';
 

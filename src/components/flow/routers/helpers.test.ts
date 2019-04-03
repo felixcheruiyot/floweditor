@@ -1,10 +1,11 @@
 import { getSwitchRouter, resolveRoutes } from '~/components/flow/routers/helpers';
+import { DEFAULT_OPERAND } from '~/components/nodeeditor/constants';
 import { createCases, createMatchRouter, createRoutes } from '~/testUtils/assetCreators';
 
 describe('routers', () => {
     describe('system categories', () => {
         it('creates all responses category', () => {
-            const { categories } = resolveRoutes(createCases([]), false, null);
+            const { categories } = resolveRoutes(createCases([]), false, null, DEFAULT_OPERAND);
             expect(categories.length).toBe(1);
             expect(categories[0].name).toBe('All Responses');
         });
@@ -16,7 +17,12 @@ describe('routers', () => {
             expect(router.categories[0].name).toBe('All Responses');
 
             // now edit our node to add a rule
-            const { categories } = resolveRoutes(createCases(['Red']), false, renderNode.node);
+            const { categories } = resolveRoutes(
+                createCases(['Red']),
+                false,
+                renderNode.node,
+                DEFAULT_OPERAND
+            );
             expect(categories.length).toBe(2);
             expect(categories[1].name).toBe('Other');
         });
@@ -25,7 +31,8 @@ describe('routers', () => {
             const { categories } = resolveRoutes(
                 createCases(['Red', 'Green', 'Blue']),
                 false,
-                null
+                null,
+                DEFAULT_OPERAND
             );
             expect(categories.length).toBe(4);
             expect(categories[categories.length - 1].name).toBe('Other');
@@ -39,7 +46,8 @@ describe('routers', () => {
             const { categories } = resolveRoutes(
                 createCases(['Red', 'Green', 'Blue']),
                 false,
-                renderNode.node
+                renderNode.node,
+                DEFAULT_OPERAND
             );
 
             // we should have reused our other category
@@ -49,7 +57,12 @@ describe('routers', () => {
         });
 
         it('creates timeout category', () => {
-            const { categories } = resolveRoutes(createCases(['Red', 'Green', 'Blue']), true, null);
+            const { categories } = resolveRoutes(
+                createCases(['Red', 'Green', 'Blue']),
+                true,
+                null,
+                DEFAULT_OPERAND
+            );
             expect(categories.length).toBe(5);
             expect(categories[categories.length - 1].name).toBe('No Response');
         });
@@ -62,7 +75,8 @@ describe('routers', () => {
             const { categories } = resolveRoutes(
                 createCases(['Red', 'Green', 'Blue']),
                 true,
-                renderNode.node
+                renderNode.node,
+                DEFAULT_OPERAND
             );
 
             // we should have reused our timeout category
@@ -107,7 +121,8 @@ describe('routers', () => {
             const routes = resolveRoutes(
                 createCases(['Red', 'Green', 'Blue']),
                 false,
-                originalNode.node
+                originalNode.node,
+                DEFAULT_OPERAND
             );
 
             // we now have three cases

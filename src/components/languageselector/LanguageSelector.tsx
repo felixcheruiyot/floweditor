@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AssetSelector from '~/components/form/assetselector/AssetSelector';
 import { languageSelector } from '~/components/languageselector/LanguageSelector.scss';
-import { ConfigProviderContext } from '~/config';
+import { ConfigProviderContext } from '~/config/ConfigProvider';
 import { Asset, Assets } from '~/store/flowContext';
 import AppState from '~/store/state';
 import { DispatchWithState, HandleLanguageChange, handleLanguageChange } from '~/store/thunks';

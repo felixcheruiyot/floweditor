@@ -207,7 +207,7 @@ export class NodeComp extends React.Component<NodeProps> {
             this.props.renderNode.ui.type === Types.split_by_run_result ||
             this.props.renderNode.ui.type === Types.split_by_run_result_delimited
         ) {
-            if (!(this.props.renderNode.ui.config.operand.id in this.props.results)) {
+            if (!(this.props.renderNode.ui.config.router.operandAsset.id in this.props.results)) {
                 return true;
             }
         }
@@ -327,12 +327,11 @@ export class NodeComp extends React.Component<NodeProps> {
                 (this.props.renderNode.ui.type === Types.split_by_run_result ||
                     this.props.renderNode.ui.type === Types.split_by_run_result_delimited)
             ) {
-                if (this.props.renderNode.ui.config.operand.id in this.props.results) {
-                    title = `Split by ${
-                        this.props.results[this.props.renderNode.ui.config.operand.id].name
-                    }`;
+                const asset = this.props.renderNode.ui.config.router.operandAsset;
+                if (asset.id in this.props.results) {
+                    title = `Split by ${this.props.results[asset.id].name}`;
                 } else {
-                    title = `Missing ${this.props.renderNode.ui.config.operand.id}`;
+                    title = `Missing ${asset.id}`;
                 }
             }
 

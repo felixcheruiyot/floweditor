@@ -48,7 +48,6 @@ describe(ResponseRouterForm.name, () => {
                         wait: { type: WaitTypes.msg },
                         router: {
                             type: RouterTypes.switch,
-                            operand: DEFAULT_OPERAND,
                             categories: [
                                 {
                                     uuid: redCategory,
@@ -96,7 +95,6 @@ describe(ResponseRouterForm.name, () => {
                         wait: { type: WaitTypes.msg },
                         router: {
                             type: RouterTypes.switch,
-                            operand: DEFAULT_OPERAND,
                             categories: [
                                 {
                                     uuid: redCategory,
@@ -121,7 +119,7 @@ describe(ResponseRouterForm.name, () => {
                         ui: {
                             position: { left: 0, top: 0 },
                             type: Types.wait_for_response,
-                            config: { cases: { [dateCase]: { arguments: ['5'] } } }
+                            config: { router: { cases: { [dateCase]: { arguments: ['5'] } } } }
                         }
                     })
                 }

@@ -289,14 +289,14 @@ Array [
     "type": "split_by_expression",
   },
   Object {
-    "description": "Split by a contact field",
+    "description": "Split by contact",
     "form": [Function],
     "localization": [Function],
     "localizeableKeys": Array [
       "exits",
       "cases",
     ],
-    "name": "Split by Contact Field",
+    "name": "Split by Contact",
     "type": "split_by_contact_field",
   },
   Object {
@@ -542,14 +542,14 @@ Object {
     "type": "transfer_airtime",
   },
   "split_by_contact_field": Object {
-    "description": "Split by a contact field",
+    "description": "Split by contact",
     "form": [Function],
     "localization": [Function],
     "localizeableKeys": Array [
       "exits",
       "cases",
     ],
-    "name": "Split by Contact Field",
+    "name": "Split by Contact",
     "type": "split_by_contact_field",
   },
   "split_by_expression": Object {

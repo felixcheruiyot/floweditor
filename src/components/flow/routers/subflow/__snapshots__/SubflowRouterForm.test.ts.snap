@@ -85,7 +85,7 @@ Array [
         "cases": Array [
           Object {
             "arguments": Array [
-              "child.run.status",
+              "@child.run.status",
               "completed",
             ],
             "category_uuid": "1dce2b34-9aab-4e20-81c4-3f0408dcb671",
@@ -94,7 +94,7 @@ Array [
           },
           Object {
             "arguments": Array [
-              "child.run.status",
+              "@child.run.status",
               "expired",
             ],
             "category_uuid": "763e4844-3e1b-407a-a1b5-5fdfcd308b41",
@@ -115,7 +115,6 @@ Array [
           },
         ],
         "default_category_uuid": null,
-        "operand": "@child",
         "type": "switch",
       },
       "uuid": "061fc171-8b79-4636-b892-bd0ea5aa9b42",
@@ -158,7 +157,7 @@ Array [
         "cases": Array [
           Object {
             "arguments": Array [
-              "child.run.status",
+              "@child.run.status",
               "completed",
             ],
             "category_uuid": "70ac6ea6-803a-4c33-81c7-dc26803c313f",
@@ -167,7 +166,7 @@ Array [
           },
           Object {
             "arguments": Array [
-              "child.run.status",
+              "@child.run.status",
               "expired",
             ],
             "category_uuid": "e67ce051-f3e4-4c42-807b-e393df5fa382",
@@ -188,7 +187,6 @@ Array [
           },
         ],
         "default_category_uuid": null,
-        "operand": "@child",
         "type": "switch",
       },
       "uuid": "061fc171-8b79-4636-b892-bd0ea5aa9b42",
@@ -272,7 +270,6 @@ Array [
           },
         ],
         "default_category_uuid": null,
-        "operand": "@child",
         "type": "switch",
       },
       "uuid": "061fc171-8b79-4636-b892-bd0ea5aa9b42",

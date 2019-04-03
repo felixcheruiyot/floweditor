@@ -2,6 +2,7 @@ import { CaseProps } from '~/components/flow/routers/caselist/CaseList';
 import {
     createCaseProps,
     createRenderNode,
+    getInitialArgument,
     hasCases,
     resolveRoutes
 } from '~/components/flow/routers/helpers';
@@ -10,6 +11,7 @@ import ResponseRouterForm, {
 } from '~/components/flow/routers/response/ResponseRouterForm';
 import { DEFAULT_OPERAND } from '~/components/nodeeditor/constants';
 import { Types } from '~/config/interfaces';
+import { getType } from '~/config/typeConfigs';
 import { Router, RouterTypes, SwitchRouter, Wait, WaitTypes } from '~/flowTypes';
 import { RenderNode } from '~/store/flowContext';
 import { NodeEditorSettings, StringEntry } from '~/store/nodeEditor';
@@ -48,10 +50,16 @@ export const stateToNode = (
     settings: NodeEditorSettings,
     state: ResponseRouterFormState
 ): RenderNode => {
+    const initialArgument =
+        getType(settings.originalNode) === Types.wait_for_response
+            ? getInitialArgument(settings.originalNode)
+            : DEFAULT_OPERAND;
+
     const { cases, exits, defaultCategory: defaultExit, caseConfig, categories } = resolveRoutes(
         state.cases,
         state.timeout > 0,
-        settings.originalNode.node
+        settings.originalNode.node,
+        initialArgument
     );
 
     const optionalRouter: Pick<Router, 'result_name'> = {};
@@ -65,7 +73,6 @@ export const stateToNode = (
         default_category_uuid: defaultExit,
         cases,
         categories,
-        operand: DEFAULT_OPERAND,
         ...optionalRouter
     };
 
@@ -81,7 +88,7 @@ export const stateToNode = (
         Types.wait_for_response,
         [],
         wait,
-        { cases: caseConfig }
+        { router: { cases: caseConfig, operand: initialArgument } }
     );
 
     return newRenderNode;

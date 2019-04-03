@@ -2,15 +2,15 @@ import { CaseProps } from '~/components/flow/routers/caselist/CaseList';
 import { GroupsRouterFormState } from '~/components/flow/routers/groups/GroupsRouterForm';
 import {
     createRenderNode,
-    resolveRoutes,
-    getSwitchRouter
+    getSwitchRouter,
+    resolveRoutes
 } from '~/components/flow/routers/helpers';
 import { GROUPS_OPERAND } from '~/components/nodeeditor/constants';
 import { Operators, Types } from '~/config/interfaces';
-import { FlowNode, RouterTypes, SwitchRouter, WaitTypes, Category, Group } from '~/flowTypes';
+import { Category, FlowNode, RouterTypes, SwitchRouter } from '~/flowTypes';
 import { Asset, AssetType, RenderNode } from '~/store/flowContext';
 import { NodeEditorSettings } from '~/store/nodeEditor';
-import { createUUID, dump } from '~/utils';
+import { createUUID } from '~/utils';
 
 export const nodeToState = (settings: NodeEditorSettings): GroupsRouterFormState => {
     const state: GroupsRouterFormState = {
@@ -38,7 +38,8 @@ export const stateToNode = (
     const { cases, exits, defaultCategory: defaultExit, caseConfig, categories } = resolveRoutes(
         currentCases,
         false,
-        settings.originalNode.node
+        settings.originalNode.node,
+        GROUPS_OPERAND
     );
 
     const router: SwitchRouter = {
@@ -46,7 +47,6 @@ export const stateToNode = (
         cases,
         categories,
         default_category_uuid: defaultExit,
-        operand: GROUPS_OPERAND,
         result_name: state.resultName.value
     };
 
@@ -57,7 +57,7 @@ export const stateToNode = (
         Types.split_by_groups,
         [],
         null,
-        { cases: caseConfig }
+        { router: { cases: caseConfig } }
     );
 };
 

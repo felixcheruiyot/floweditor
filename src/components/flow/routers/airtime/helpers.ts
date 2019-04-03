@@ -95,13 +95,13 @@ export const stateToNode = (
             {
                 uuid: createUUID(),
                 type: Operators.has_webhook_status,
-                arguments: ['success'],
+                arguments: ['@child', 'success'],
                 category_uuid: exits[0].uuid
             },
             {
                 uuid: createUUID(),
                 type: Operators.has_webhook_status,
-                arguments: ['failed'],
+                arguments: ['@child', 'failed'],
                 category_uuid: exits[1].uuid
             }
         ];
@@ -109,7 +109,6 @@ export const stateToNode = (
 
     const router: SwitchRouter = {
         type: RouterTypes.switch,
-        operand: '@child',
         cases,
         categories,
         default_category_uuid: null

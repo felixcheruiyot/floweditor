@@ -1,14 +1,30 @@
-import { createRenderNode, resolveRoutes } from '~/components/flow/routers/helpers';
+import {
+    createRenderNode,
+    getInitialArgument,
+    resolveRoutes
+} from '~/components/flow/routers/helpers';
 import { WaitRouterFormState } from '~/components/flow/routers/wait/WaitRouterForm';
 import { DEFAULT_OPERAND } from '~/components/nodeeditor/constants';
 import { Type, Types } from '~/config/interfaces';
+import { getType } from '~/config/typeConfigs';
 import { HintTypes, Router, RouterTypes, SwitchRouter, Wait, WaitTypes } from '~/flowTypes';
 import { RenderNode } from '~/store/flowContext';
 import { NodeEditorSettings, StringEntry } from '~/store/nodeEditor';
 
+const isWaitNode = (renderNode: RenderNode): boolean => {
+    const type = getType(renderNode);
+    return (
+        type === Types.wait_for_response ||
+        type === Types.wait_for_audio ||
+        type === Types.wait_for_image ||
+        type === Types.wait_for_location ||
+        type === Types.wait_for_video
+    );
+};
+
 export const nodeToState = (settings: NodeEditorSettings): WaitRouterFormState => {
     let resultName: StringEntry = { value: 'Result' };
-    if (settings.originalNode && settings.originalNode.ui.type === Types.wait_for_response) {
+    if (isWaitNode(settings.originalNode)) {
         const router = settings.originalNode.node.router as SwitchRouter;
         if (router) {
             resultName = { value: router.result_name || '' };
@@ -26,10 +42,15 @@ export const stateToNode = (
     state: WaitRouterFormState,
     typeConfig: Type
 ): RenderNode => {
+    const initialArgument = isWaitNode(settings.originalNode)
+        ? getInitialArgument(settings.originalNode)
+        : DEFAULT_OPERAND;
+
     const { exits, defaultCategory: defaultExit, caseConfig, categories } = resolveRoutes(
         [],
         false,
-        settings.originalNode.node
+        settings.originalNode.node,
+        initialArgument
     );
 
     const optionalRouter: Pick<Router, 'result_name'> = {};
@@ -43,7 +64,6 @@ export const stateToNode = (
         default_category_uuid: defaultExit,
         cases: [],
         categories,
-        operand: DEFAULT_OPERAND,
         ...optionalRouter
     };
 
@@ -71,7 +91,7 @@ export const stateToNode = (
         Types.wait_for_response,
         [],
         wait,
-        { cases: caseConfig }
+        { router: { cases: caseConfig, operand: initialArgument } }
     );
 
     return newRenderNode;

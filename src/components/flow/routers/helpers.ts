@@ -1,9 +1,12 @@
 import { CaseProps } from '~/components/flow/routers/caselist/CaseList';
 import { DefaultExitNames } from '~/components/flow/routers/constants';
+import { DEFAULT_OPERAND } from '~/components/nodeeditor/constants';
 import { Operators, Types } from '~/config/interfaces';
+import { getOperatorConfig } from '~/config/operatorConfigs';
 import {
     Action,
     Case,
+    CaseConfig,
     Category,
     Exit,
     FlowNode,
@@ -20,7 +23,7 @@ export interface CategorizedCases {
     cases: Case[];
     categories: Category[];
     exits: Exit[];
-    caseConfig: { [uuid: string]: any };
+    caseConfig: CaseConfig;
 }
 export interface ResolvedRoutes extends CategorizedCases {
     defaultCategory: string;
@@ -33,7 +36,7 @@ export const createRenderNode = (
     type: Types,
     actions: Action[] = [],
     wait: Wait = null,
-    uiConfig: { [key: string]: any } = {}
+    uiConfig: UIConfig = {}
 ): RenderNode => {
     const renderNode: RenderNode = {
         node: {
@@ -86,9 +89,11 @@ export const createCaseProps = (cases: Case[], renderNode: RenderNode): CaseProp
                 (category: Category) => category.uuid === kase.category_uuid
             );
 
+            // trim off our initial argument
+            kase.arguments = kase.arguments.slice(1);
             if (isRelativeDate(kase.type)) {
-                if (renderNode.ui.config && renderNode.ui.config.cases) {
-                    const caseConfig = renderNode.ui.config.cases[kase.uuid];
+                if (renderNode.ui.config && renderNode.ui.config.router.cases) {
+                    const caseConfig = renderNode.ui.config.router.cases[kase.uuid];
                     if (caseConfig && caseConfig.arguments) {
                         kase.arguments = caseConfig.arguments;
                     }
@@ -120,13 +125,15 @@ const isCategoryMatch = (cat: Category, name: string) => {
  */
 export const categorizeCases = (
     newCases: CaseProps[],
-    originalNode: FlowNode
+    originalNode: FlowNode,
+    initialArgument: string
 ): CategorizedCases => {
     const categories: Category[] = [];
     const cases: Case[] = [];
     const exits: Exit[] = [];
-    const caseConfig: UIConfig = {};
+    const caseConfig: CaseConfig = {};
 
+    let firstArgument = initialArgument;
     const originalRouter = originalNode && originalNode.router;
     const previousCategories = (originalRouter && originalRouter.categories) || [];
 
@@ -139,11 +146,20 @@ export const categorizeCases = (
 
         // convert relative dates to expressions with configs
         if (isRelativeDate(newCase.kase.type)) {
-            caseConfig[newCase.uuid] = { arguments: newCase.kase.arguments };
+            caseConfig[newCase.uuid] = { ['arguments']: newCase.kase.arguments };
             newCase.kase.arguments = [
                 `@(datetime_add(today(), ${newCase.kase.arguments[0]}, "D"))`
             ];
         }
+
+        // operators can override the initial argument
+        const operatorArgument = getOperatorConfig(newCase.kase.type).initialArgument;
+        if (operatorArgument) {
+            firstArgument = operatorArgument;
+        }
+
+        // prepend our initial argument
+        newCase.kase.arguments = [firstArgument, ...newCase.kase.arguments];
 
         //  see if it exists on a previous case
         let category = categories.find((cat: Category) =>
@@ -298,9 +314,10 @@ const getTimeoutRoute = (
 export const resolveRoutes = (
     newCases: CaseProps[],
     hasTimeout: boolean,
-    originalNode: FlowNode
+    originalNode: FlowNode,
+    initialArgument: string
 ): ResolvedRoutes => {
-    const resolved = categorizeCases(newCases, originalNode);
+    const resolved = categorizeCases(newCases, originalNode, initialArgument);
 
     // tack on our other category
     const { defaultCategory, defaultExit } = getDefaultRoute(
@@ -320,4 +337,22 @@ export const resolveRoutes = (
     }
 
     return { ...resolved, defaultCategory: defaultCategory.uuid };
+};
+
+export const getNestedObject = (ob: any, keys: string) => {
+    let check = ob;
+    for (const key of keys.split('.')) {
+        console.log(check, key);
+        if (key in check) {
+            check = check[key];
+        } else {
+            return null;
+        }
+    }
+    return check;
+};
+
+export const getInitialArgument = (renderNode: RenderNode): string => {
+    const operand = getNestedObject(renderNode, 'ui.config.router.operand');
+    return operand || DEFAULT_OPERAND;
 };

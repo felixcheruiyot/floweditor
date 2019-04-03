@@ -1,13 +1,10 @@
 import SendMsgLocalizationForm from '~/components/flow/actions/localization/MsgLocalizationForm';
 import { LocalizationFormProps } from '~/components/flow/props';
-import { getTypeConfig } from '~/config';
-import { Types } from '~/config/interfaces';
 import { LocalizedObject } from '~/services/Localization';
 import { composeComponentTestUtils } from '~/testUtils';
 import { createSendMsgAction, Spanish } from '~/testUtils/assetCreators';
 
 const action = createSendMsgAction();
-const sendConfig = getTypeConfig(Types.send_broadcast);
 
 const baseProps: LocalizationFormProps = {
     language: Spanish,

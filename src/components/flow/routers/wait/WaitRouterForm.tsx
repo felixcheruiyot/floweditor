@@ -7,7 +7,6 @@ import TypeList from '~/components/nodeeditor/TypeList';
 import { FormState, StringEntry } from '~/store/nodeEditor';
 
 import { nodeToState, stateToNode } from './helpers';
-
 import * as styles from './WaitRouterForm.scss';
 
 export interface WaitRouterFormState extends FormState {
@@ -45,7 +44,7 @@ export default class WaitRouterForm extends React.Component<RouterFormProps, Wai
         };
     }
 
-    public renderEdit(): JSX.Element {
+    public render(): JSX.Element {
         const typeConfig = this.props.typeConfig;
 
         return (
@@ -70,9 +69,5 @@ export default class WaitRouterForm extends React.Component<RouterFormProps, Wai
                 </div>
             </Dialog>
         );
-    }
-
-    public render(): JSX.Element {
-        return this.renderEdit();
     }
 }

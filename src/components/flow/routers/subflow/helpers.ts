@@ -1,15 +1,16 @@
 import { createRenderNode } from '~/components/flow/routers/helpers';
 import { SubflowRouterFormState } from '~/components/flow/routers/subflow/SubflowRouterForm';
+import { SUBFLOW_OPERAND } from '~/components/nodeeditor/constants';
 import { Operators, Types } from '~/config/interfaces';
 import {
     Case,
+    Category,
     Exit,
     Flow,
     RouterTypes,
     StartFlow,
     StartFlowExitNames,
-    SwitchRouter,
-    Category
+    SwitchRouter
 } from '~/flowTypes';
 import { Asset, AssetType, RenderNode } from '~/store/flowContext';
 import { NodeEditorSettings } from '~/store/nodeEditor';
@@ -82,12 +83,12 @@ export const stateToNode = (
             {
                 uuid: createUUID(),
                 type: Operators.is_text_eq,
-                arguments: ['child.run.status', 'completed'],
+                arguments: [SUBFLOW_OPERAND, 'completed'],
                 category_uuid: categories[0].uuid
             },
             {
                 uuid: createUUID(),
-                arguments: ['child.run.status', 'expired'],
+                arguments: [SUBFLOW_OPERAND, 'expired'],
                 type: Operators.is_text_eq,
                 category_uuid: categories[1].uuid
             }
@@ -96,7 +97,6 @@ export const stateToNode = (
 
     const router: SwitchRouter = {
         type: RouterTypes.switch,
-        operand: '@child',
         cases,
         categories,
         default_category_uuid: null

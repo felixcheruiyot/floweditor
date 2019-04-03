@@ -1,5 +1,5 @@
-import { getTypeConfig } from '~/config';
 import { Types } from '~/config/interfaces';
+import { getTypeConfig } from '~/config/typeConfigs';
 import Constants from '~/store/constants';
 import reducer, {
     initialState,

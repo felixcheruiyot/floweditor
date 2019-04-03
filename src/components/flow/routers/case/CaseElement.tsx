@@ -8,10 +8,9 @@ import { CaseProps } from '~/components/flow/routers/caselist/CaseList';
 import { isRelativeDate } from '~/components/flow/routers/helpers';
 import FormElement from '~/components/form/FormElement';
 import TextInputElement from '~/components/form/textinput/TextInputElement';
-import { Operator } from '~/config';
 import { fakePropType } from '~/config/ConfigProvider';
 import { filterOperators } from '~/config/helpers';
-import { Operators } from '~/config/interfaces';
+import { Operator, Operators } from '~/config/interfaces';
 import { operatorConfigList } from '~/config/operatorConfigs';
 import { Case } from '~/flowTypes';
 import { FormState, StringEntry, ValidationFailure } from '~/store/nodeEditor';
@@ -175,9 +174,9 @@ export default class CaseElement extends React.Component<CaseElementProps, CaseE
     }
 
     private renderArguments(): JSX.Element {
-        if (this.state.operatorConfig.operands > 0) {
+        if (this.state.operatorConfig.additionalArguments > 0) {
             // First pass at displaying, handling Operators.has_number_between inputs
-            if (this.state.operatorConfig.operands > 1) {
+            if (this.state.operatorConfig.additionalArguments > 1) {
                 return (
                     <>
                         <TextInputElement

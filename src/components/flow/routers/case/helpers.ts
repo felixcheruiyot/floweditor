@@ -133,7 +133,7 @@ export const validateCase = (keys: {
         operatorConfig: keys.operatorConfig
     };
 
-    if (keys.operatorConfig.operands > 0) {
+    if (keys.operatorConfig.additionalArguments > 0) {
         switch (keys.operatorConfig.type) {
             case Operators.has_number_eq:
             case Operators.has_number_gt:
@@ -206,7 +206,7 @@ export const getExitName = (state: Partial<CaseElementState>): string => {
         return state.categoryName.value;
     }
 
-    if (state.operatorConfig.operands === 0) {
+    if (state.operatorConfig.additionalArguments === 0) {
         return state.operatorConfig.categoryName;
     }
 

@@ -1,6 +1,6 @@
 import { createRenderNode } from '~/components/flow/routers/helpers';
 import { WebhookRouterFormState } from '~/components/flow/routers/webhook/WebhookRouterForm';
-import { DEFAULT_BODY } from '~/components/nodeeditor/constants';
+import { DEFAULT_BODY, WEBHOOK_OPERAND } from '~/components/nodeeditor/constants';
 import { Operators, Types } from '~/config/interfaces';
 import {
     CallWebhook,
@@ -168,19 +168,19 @@ export const stateToNode = (
             {
                 uuid: createUUID(),
                 type: Operators.has_webhook_status,
-                arguments: ['success'],
+                arguments: [WEBHOOK_OPERAND, 'success'],
                 category_uuid: categories[0].uuid
             },
             {
                 uuid: createUUID(),
                 type: Operators.has_webhook_status,
-                arguments: ['response_error'],
+                arguments: [WEBHOOK_OPERAND, 'response_error'],
                 category_uuid: categories[1].uuid
             },
             {
                 uuid: createUUID(),
                 type: Operators.has_webhook_status,
-                arguments: ['connection_error'],
+                arguments: [WEBHOOK_OPERAND, 'connection_error'],
                 category_uuid: categories[2].uuid
             }
         ];
@@ -188,7 +188,6 @@ export const stateToNode = (
 
     const router: SwitchRouter = {
         type: RouterTypes.switch,
-        operand: '@run.webhook',
         cases,
         categories,
         default_category_uuid: exits[1].uuid

@@ -181,6 +181,7 @@ Array [
         "cases": Array [
           Object {
             "arguments": Array [
+              "@input",
               "red",
             ],
             "category_uuid": "763e4844-3e1b-407a-a1b5-5fdfcd308b41",
@@ -188,6 +189,7 @@ Array [
           },
           Object {
             "arguments": Array [
+              "@input",
               "maroon",
             ],
             "category_uuid": "763e4844-3e1b-407a-a1b5-5fdfcd308b41",
@@ -195,6 +197,7 @@ Array [
           },
           Object {
             "arguments": Array [
+              "@input",
               "green",
             ],
             "category_uuid": "1e47a1e1-3c67-4df5-adf1-da542c789adb",
@@ -219,7 +222,6 @@ Array [
           },
         ],
         "default_category_uuid": "061fc171-8b79-4636-b892-bd0ea5aa9b42",
-        "operand": "@input",
         "result_name": "Favorite Color",
         "type": "switch",
       },
@@ -233,7 +235,10 @@ Array [
     },
     "ui": Object {
       "config": Object {
-        "cases": Object {},
+        "router": Object {
+          "cases": Object {},
+          "operand": "@input",
+        },
       },
       "position": null,
       "type": "wait_for_response",

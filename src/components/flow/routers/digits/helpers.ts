@@ -2,9 +2,11 @@ import { CaseProps } from '~/components/flow/routers/caselist/CaseList';
 import {
     createCaseProps,
     createRenderNode,
+    getInitialArgument,
     hasCases,
     resolveRoutes
 } from '~/components/flow/routers/helpers';
+import { DEFAULT_OPERAND } from '~/components/nodeeditor/constants';
 import { Types } from '~/config/interfaces';
 import { getType } from '~/config/typeConfigs';
 import { HintTypes, Router, RouterTypes, SwitchRouter, WaitTypes } from '~/flowTypes';
@@ -25,7 +27,6 @@ export const nodeToState = (settings: NodeEditorSettings): DigitsRouterFormState
             if (hasCases(settings.originalNode.node)) {
                 initialCases = createCaseProps(router.cases, settings.originalNode);
             }
-
             resultName = { value: router.result_name || '' };
         }
     }
@@ -41,10 +42,16 @@ export const stateToNode = (
     settings: NodeEditorSettings,
     state: DigitsRouterFormState
 ): RenderNode => {
+    const initialArgument =
+        getType(settings.originalNode) === Types.wait_for_digits
+            ? getInitialArgument(settings.originalNode)
+            : DEFAULT_OPERAND;
+
     const { cases, exits, categories, defaultCategory: defaultExit, caseConfig } = resolveRoutes(
         state.cases,
         false,
-        settings.originalNode.node
+        settings.originalNode.node,
+        initialArgument
     );
 
     const optionalRouter: Pick<Router, 'result_name'> = {};
@@ -57,7 +64,6 @@ export const stateToNode = (
         default_category_uuid: defaultExit,
         categories,
         cases,
-        operand: '@input',
         ...optionalRouter
     };
 
@@ -68,7 +74,7 @@ export const stateToNode = (
         Types.wait_for_response,
         [],
         { type: WaitTypes.msg, hint: { type: HintTypes.digits } },
-        { cases: caseConfig }
+        { router: { cases: caseConfig, operand: initialArgument } }
     );
 
     return newRenderNode;

@@ -1,15 +1,17 @@
 import { DraggableStyle } from 'react-beautiful-dnd';
 import { CaseProps, DragCursor } from '~/components/flow/routers/caselist/CaseList';
 import { Operators } from '~/config/interfaces';
+import { getOperatorConfig } from '~/config/operatorConfigs';
 import { createUUID } from '~/utils';
 
 export const createEmptyCase = (): CaseProps => {
     const uuid = createUUID();
+    const config = getOperatorConfig(Operators.has_any_word);
     return {
         uuid,
         kase: {
             uuid,
-            type: Operators.has_any_word,
+            type: config.type,
             arguments: [''],
             category_uuid: null
         },

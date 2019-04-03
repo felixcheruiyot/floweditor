@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { operatorConfigList } from '~/config';
+import { operatorConfigList } from '~/config/operatorConfigs';
 import { ContactProperties } from '~/flowTypes';
 import { languages } from '~/testUtils/assetCreators';
 import {

@@ -1,4 +1,4 @@
-import { Type } from '~/config';
+import { Type } from '~/config/interfaces';
 import { FlowDefinition } from '~/flowTypes';
 import Constants from '~/store/constants';
 import { EditorState } from '~/store/editor';

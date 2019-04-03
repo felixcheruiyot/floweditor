@@ -15,20 +15,20 @@ exports[`FieldRouterForm initializes 1`] = `
     }
   }
   headerClass="split_by_contact_field"
-  title="Split by Contact Field"
+  title="Split by Contact"
 >
   <TypeList
     __className=""
     initialType={
       Object {
-        "description": "Split by a contact field",
+        "description": "Split by contact",
         "form": [Function],
         "localization": [Function],
         "localizeableKeys": Array [
           "exits",
           "cases",
         ],
-        "name": "Split by Contact Field",
+        "name": "Split by Contact",
         "type": "split_by_contact_field",
       }
     }
@@ -121,6 +121,12 @@ exports[`FieldRouterForm initializes 1`] = `
             },
           ]
         }
+        assets={
+          Object {
+            "items": Object {},
+            "type": "field",
+          }
+        }
         entry={
           Object {
             "value": Object {
@@ -154,9 +160,7 @@ exports[`FieldRouterForm initializes 1`] = `
         Object {
           "categoryName": null,
           "kase": Object {
-            "arguments": Array [
-              "red",
-            ],
+            "arguments": Array [],
             "category_uuid": null,
             "type": "has_any_word",
             "uuid": "061fc171-8b79-4636-b892-bd0ea5aa9b42",
@@ -198,20 +202,20 @@ exports[`FieldRouterForm should render 1`] = `
     }
   }
   headerClass="split_by_contact_field"
-  title="Split by Contact Field"
+  title="Split by Contact"
 >
   <TypeList
     __className=""
     initialType={
       Object {
-        "description": "Split by a contact field",
+        "description": "Split by contact",
         "form": [Function],
         "localization": [Function],
         "localizeableKeys": Array [
           "exits",
           "cases",
         ],
-        "name": "Split by Contact Field",
+        "name": "Split by Contact",
         "type": "split_by_contact_field",
       }
     }
@@ -303,6 +307,12 @@ exports[`FieldRouterForm should render 1`] = `
               "type": "scheme",
             },
           ]
+        }
+        assets={
+          Object {
+            "items": Object {},
+            "type": "field",
+          }
         }
         entry={
           Object {
@@ -416,6 +426,7 @@ Array [
         "cases": Array [
           Object {
             "arguments": Array [
+              "@contact.fields.favorite_color",
               "red",
             ],
             "category_uuid": "1e47a1e1-3c67-4df5-adf1-da542c789adb",
@@ -423,6 +434,7 @@ Array [
           },
           Object {
             "arguments": Array [
+              "@contact.fields.favorite_color",
               "maroon",
             ],
             "category_uuid": "1e47a1e1-3c67-4df5-adf1-da542c789adb",
@@ -430,6 +442,7 @@ Array [
           },
           Object {
             "arguments": Array [
+              "@contact.fields.favorite_color",
               "green",
             ],
             "category_uuid": "2dc85899-0577-4f1b-a620-f12094e34b5e",
@@ -454,7 +467,6 @@ Array [
           },
         ],
         "default_category_uuid": "70ac6ea6-803a-4c33-81c7-dc26803c313f",
-        "operand": "@contact.fields.favorite_color",
         "result_name": "Favorite Color",
         "type": "switch",
       },
@@ -462,11 +474,14 @@ Array [
     },
     "ui": Object {
       "config": Object {
-        "cases": Object {},
-        "operand": Object {
-          "id": "favorite_color",
-          "name": null,
-          "type": "field",
+        "router": Object {
+          "cases": Object {},
+          "operand": "@contact.fields.favorite_color",
+          "operandAsset": Object {
+            "id": "favorite_color",
+            "name": null,
+            "type": "field",
+          },
         },
       },
       "position": null,

@@ -65,6 +65,12 @@ exports[`ResultRouterForm should render 1`] = `
     className="resultSelect"
   >
     <AssetSelector
+      assets={
+        Object {
+          "items": Object {},
+          "type": "result",
+        }
+      }
       entry={
         Object {
           "value": null,

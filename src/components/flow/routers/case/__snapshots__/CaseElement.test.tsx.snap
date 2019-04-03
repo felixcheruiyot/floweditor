@@ -21,7 +21,7 @@ Object {
     "value": "",
   },
   "operatorConfig": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_any_word",
     "verboseName": "has any of the words",
     "visibility": Array [
@@ -54,7 +54,7 @@ Object {
     "value": "",
   },
   "operatorConfig": Object {
-    "operands": 2,
+    "additionalArguments": 2,
     "type": "has_number_between",
     "verboseName": "has a number between",
   },
@@ -87,7 +87,7 @@ Object {
     "value": "",
   },
   "operatorConfig": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_any_word",
     "verboseName": "has any of the words",
     "visibility": Array [
@@ -131,60 +131,67 @@ exports[`CaseElement render renders no argument rules 1`] = `
         options={
           Array [
             Object {
-              "operands": 1,
+              "additionalArguments": 1,
               "type": "has_beginning",
               "verboseName": "starts with",
             },
             Object {
+              "additionalArguments": 0,
               "categoryName": "Has Number",
-              "operands": 0,
               "type": "has_number",
               "verboseName": "has a number",
             },
             Object {
-              "operands": 2,
+              "additionalArguments": 2,
               "type": "has_number_between",
               "verboseName": "has a number between",
             },
             Object {
-              "operands": 1,
+              "additionalArguments": 1,
               "type": "has_number_lt",
               "verboseName": "has a number below",
             },
             Object {
-              "operands": 1,
+              "additionalArguments": 1,
               "type": "has_number_lte",
               "verboseName": "has a number at or below",
             },
             Object {
-              "operands": 1,
+              "additionalArguments": 1,
               "type": "has_number_eq",
               "verboseName": "has a number equal to",
             },
             Object {
-              "operands": 1,
+              "additionalArguments": 1,
               "type": "has_number_gte",
               "verboseName": "has a number at or above",
             },
             Object {
-              "operands": 1,
+              "additionalArguments": 1,
               "type": "has_number_gt",
               "verboseName": "has a number above",
             },
             Object {
+              "additionalArguments": 0,
               "categoryName": "Has Phone",
-              "operands": 0,
               "type": "has_phone",
               "verboseName": "has a phone number",
             },
             Object {
+              "additionalArguments": 0,
               "categoryName": "Not Empty",
-              "operands": 0,
               "type": "has_value",
               "verboseName": "is not empty",
             },
             Object {
-              "operands": 1,
+              "additionalArguments": 0,
+              "categoryName": "Has Attachment",
+              "initialArgument": "@input.attachments",
+              "type": "has_attachment",
+              "verboseName": "has an attachment",
+            },
+            Object {
+              "additionalArguments": 1,
               "type": "has_pattern",
               "verboseName": "matches regex",
             },
@@ -203,8 +210,8 @@ exports[`CaseElement render renders no argument rules 1`] = `
         }
         value={
           Object {
+            "additionalArguments": 0,
             "categoryName": "Has Number",
-            "operands": 0,
             "type": "has_number",
             "verboseName": "has a number",
           }
@@ -274,60 +281,67 @@ exports[`CaseElement render should render empty case 1`] = `
         options={
           Array [
             Object {
-              "operands": 1,
+              "additionalArguments": 1,
               "type": "has_beginning",
               "verboseName": "starts with",
             },
             Object {
+              "additionalArguments": 0,
               "categoryName": "Has Number",
-              "operands": 0,
               "type": "has_number",
               "verboseName": "has a number",
             },
             Object {
-              "operands": 2,
+              "additionalArguments": 2,
               "type": "has_number_between",
               "verboseName": "has a number between",
             },
             Object {
-              "operands": 1,
+              "additionalArguments": 1,
               "type": "has_number_lt",
               "verboseName": "has a number below",
             },
             Object {
-              "operands": 1,
+              "additionalArguments": 1,
               "type": "has_number_lte",
               "verboseName": "has a number at or below",
             },
             Object {
-              "operands": 1,
+              "additionalArguments": 1,
               "type": "has_number_eq",
               "verboseName": "has a number equal to",
             },
             Object {
-              "operands": 1,
+              "additionalArguments": 1,
               "type": "has_number_gte",
               "verboseName": "has a number at or above",
             },
             Object {
-              "operands": 1,
+              "additionalArguments": 1,
               "type": "has_number_gt",
               "verboseName": "has a number above",
             },
             Object {
+              "additionalArguments": 0,
               "categoryName": "Has Phone",
-              "operands": 0,
               "type": "has_phone",
               "verboseName": "has a phone number",
             },
             Object {
+              "additionalArguments": 0,
               "categoryName": "Not Empty",
-              "operands": 0,
               "type": "has_value",
               "verboseName": "is not empty",
             },
             Object {
-              "operands": 1,
+              "additionalArguments": 0,
+              "categoryName": "Has Attachment",
+              "initialArgument": "@input.attachments",
+              "type": "has_attachment",
+              "verboseName": "has an attachment",
+            },
+            Object {
+              "additionalArguments": 1,
               "type": "has_pattern",
               "verboseName": "matches regex",
             },
@@ -346,7 +360,7 @@ exports[`CaseElement render should render empty case 1`] = `
         }
         value={
           Object {
-            "operands": 1,
+            "additionalArguments": 1,
             "type": "has_any_word",
             "verboseName": "has any of the words",
             "visibility": Array [
@@ -422,7 +436,7 @@ Object {
     "value": "",
   },
   "operatorConfig": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_any_word",
     "verboseName": "has any of the words",
     "visibility": Array [
@@ -455,7 +469,7 @@ Object {
     "value": "1",
   },
   "operatorConfig": Object {
-    "operands": 2,
+    "additionalArguments": 2,
     "type": "has_number_between",
     "verboseName": "has a number between",
   },

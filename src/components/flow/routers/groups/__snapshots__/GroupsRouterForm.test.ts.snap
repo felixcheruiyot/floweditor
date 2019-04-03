@@ -165,6 +165,7 @@ Array [
         "cases": Array [
           Object {
             "arguments": Array [
+              "@contact.groups",
               "68223118-109f-442a-aed3-7bb3e1eab687",
             ],
             "category_uuid": "1dce2b34-9aab-4e20-81c4-3f0408dcb671",
@@ -185,7 +186,6 @@ Array [
           },
         ],
         "default_category_uuid": "6c22884b-0e35-4206-982e-18320691eda9",
-        "operand": "@contact",
         "result_name": "My Group Result",
         "type": "switch",
       },
@@ -193,7 +193,9 @@ Array [
     },
     "ui": Object {
       "config": Object {
-        "cases": Object {},
+        "router": Object {
+          "cases": Object {},
+        },
       },
       "position": null,
       "type": "split_by_groups",

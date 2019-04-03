@@ -73,6 +73,7 @@ export enum Operators {
     has_email = 'has_email',
     has_error = 'has_error',
     has_value = 'has_value',
+    has_attachment = 'has_attachment',
     has_wait_timed_out = 'has_wait_timed_out',
     has_district = 'has_district',
     has_state = 'has_state',
@@ -100,7 +101,8 @@ export interface Type extends FlowTypeVisibility {
 export interface Operator extends FlowTypeVisibility {
     type: Operators;
     verboseName: string;
-    operands: number;
+    additionalArguments: number;
+    initialArgument?: string;
     categoryName?: string;
 }
 

@@ -126,7 +126,6 @@ Array [
           },
         ],
         "default_category_uuid": null,
-        "operand": "@child",
         "type": "switch",
       },
       "uuid": "061fc171-8b79-4636-b892-bd0ea5aa9b42",
@@ -170,6 +169,7 @@ Array [
         "cases": Array [
           Object {
             "arguments": Array [
+              "@run.webhook",
               "success",
             ],
             "category_uuid": "00dd2423-0a34-4ee2-b97d-839fb2d593ef",
@@ -178,6 +178,7 @@ Array [
           },
           Object {
             "arguments": Array [
+              "@run.webhook",
               "response_error",
             ],
             "category_uuid": "c5722340-f7e1-4d99-ac5e-3a6e59845111",
@@ -186,6 +187,7 @@ Array [
           },
           Object {
             "arguments": Array [
+              "@run.webhook",
               "connection_error",
             ],
             "category_uuid": "f05fa107-03db-4315-a211-53da63603e6f",
@@ -211,7 +213,6 @@ Array [
           },
         ],
         "default_category_uuid": null,
-        "operand": "@child",
         "type": "switch",
       },
       "uuid": "061fc171-8b79-4636-b892-bd0ea5aa9b42",
@@ -310,7 +311,6 @@ Array [
           },
         ],
         "default_category_uuid": null,
-        "operand": "@child",
         "type": "switch",
       },
       "uuid": "061fc171-8b79-4636-b892-bd0ea5aa9b42",

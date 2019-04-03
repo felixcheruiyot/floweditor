@@ -28,6 +28,8 @@ exports[`helpers prefix should prefix "has a run status of" operator appropriate
 
 exports[`helpers prefix should prefix "has all of the words" operator appropriately 1`] = `""`;
 
+exports[`helpers prefix should prefix "has an attachment" operator appropriately 1`] = `""`;
+
 exports[`helpers prefix should prefix "has an email" operator appropriately 1`] = `""`;
 
 exports[`helpers prefix should prefix "has an error" operator appropriately 1`] = `""`;
@@ -76,7 +78,7 @@ Object {
     "value": "50",
   },
   "operatorConfig": Object {
-    "operands": 2,
+    "additionalArguments": 2,
     "type": "has_number_between",
     "verboseName": "has a number between",
   },
@@ -104,7 +106,7 @@ Object {
     "value": "",
   },
   "operatorConfig": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_any_word",
     "verboseName": "has any of the words",
     "visibility": Array [
@@ -136,7 +138,7 @@ Object {
     "value": "",
   },
   "operatorConfig": Object {
-    "operands": 2,
+    "additionalArguments": 2,
     "type": "has_number_between",
     "verboseName": "has a number between",
   },
@@ -168,7 +170,7 @@ Object {
     "value": "",
   },
   "operatorConfig": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_any_word",
     "verboseName": "has any of the words",
     "visibility": Array [
@@ -200,7 +202,7 @@ Object {
     "value": "5",
   },
   "operatorConfig": Object {
-    "operands": 2,
+    "additionalArguments": 2,
     "type": "has_number_between",
     "verboseName": "has a number between",
   },
@@ -228,8 +230,8 @@ Object {
     "value": "",
   },
   "operatorConfig": Object {
+    "additionalArguments": 0,
     "categoryName": "Has Text",
-    "operands": 0,
     "type": "has_text",
     "verboseName": "has some text",
     "visibility": Array [

@@ -16,8 +16,13 @@ const { setup } = composeComponentTestUtils<RouterFormProps>(
                 position: { left: 0, top: 0 },
                 type: Types.split_by_run_result,
                 config: {
-                    id: 'favorite_color',
-                    type: AssetType.Result
+                    router: {
+                        operandAsset: {
+                            id: 'favorite_color',
+                            name: 'Favorite Color',
+                            type: AssetType.Result
+                        }
+                    }
                 }
             }
         })

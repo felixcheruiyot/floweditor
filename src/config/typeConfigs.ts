@@ -308,8 +308,8 @@ export const typeConfigList: Type[] = [
     },
     {
         type: Types.split_by_contact_field,
-        name: 'Split by Contact Field',
-        description: 'Split by a contact field',
+        name: 'Split by Contact',
+        description: 'Split by contact',
         localization: RouterLocalizationForm,
         localizeableKeys: ['exits', 'cases'],
         form: FieldRouterForm

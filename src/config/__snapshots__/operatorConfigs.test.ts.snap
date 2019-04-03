@@ -3,7 +3,7 @@
 exports[`Providers: ConfigProvider: operatorConfigs should provide operator config 1`] = `
 Array [
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_any_word",
     "verboseName": "has any of the words",
     "visibility": Array [
@@ -12,7 +12,7 @@ Array [
     ],
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_all_words",
     "verboseName": "has all of the words",
     "visibility": Array [
@@ -21,7 +21,7 @@ Array [
     ],
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_phrase",
     "verboseName": "has the phrase",
     "visibility": Array [
@@ -30,7 +30,7 @@ Array [
     ],
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_only_phrase",
     "verboseName": "has only the phrase",
     "visibility": Array [
@@ -39,13 +39,13 @@ Array [
     ],
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_beginning",
     "verboseName": "starts with",
   },
   Object {
+    "additionalArguments": 0,
     "categoryName": "Has Text",
-    "operands": 0,
     "type": "has_text",
     "verboseName": "has some text",
     "visibility": Array [
@@ -54,44 +54,44 @@ Array [
     ],
   },
   Object {
+    "additionalArguments": 0,
     "categoryName": "Has Number",
-    "operands": 0,
     "type": "has_number",
     "verboseName": "has a number",
   },
   Object {
-    "operands": 2,
+    "additionalArguments": 2,
     "type": "has_number_between",
     "verboseName": "has a number between",
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_number_lt",
     "verboseName": "has a number below",
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_number_lte",
     "verboseName": "has a number at or below",
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_number_eq",
     "verboseName": "has a number equal to",
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_number_gte",
     "verboseName": "has a number at or above",
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_number_gt",
     "verboseName": "has a number above",
   },
   Object {
+    "additionalArguments": 0,
     "categoryName": "Has Date",
-    "operands": 0,
     "type": "has_date",
     "verboseName": "has a date",
     "visibility": Array [
@@ -100,7 +100,7 @@ Array [
     ],
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_date_lt",
     "verboseName": "has a date before",
     "visibility": Array [
@@ -109,7 +109,7 @@ Array [
     ],
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_date_eq",
     "verboseName": "has a date equal to",
     "visibility": Array [
@@ -118,7 +118,7 @@ Array [
     ],
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_date_gt",
     "verboseName": "has a date after",
     "visibility": Array [
@@ -127,7 +127,7 @@ Array [
     ],
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_run_status",
     "verboseName": "has a run status of",
     "visibility": Array [
@@ -135,7 +135,7 @@ Array [
     ],
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_group",
     "verboseName": "is in the group",
     "visibility": Array [
@@ -143,14 +143,14 @@ Array [
     ],
   },
   Object {
+    "additionalArguments": 0,
     "categoryName": "Has Phone",
-    "operands": 0,
     "type": "has_phone",
     "verboseName": "has a phone number",
   },
   Object {
+    "additionalArguments": 0,
     "categoryName": "Has Email",
-    "operands": 0,
     "type": "has_email",
     "verboseName": "has an email",
     "visibility": Array [
@@ -159,8 +159,8 @@ Array [
     ],
   },
   Object {
+    "additionalArguments": 0,
     "categoryName": "Has Error",
-    "operands": 0,
     "type": "has_error",
     "verboseName": "has an error",
     "visibility": Array [
@@ -168,13 +168,20 @@ Array [
     ],
   },
   Object {
+    "additionalArguments": 0,
     "categoryName": "Not Empty",
-    "operands": 0,
     "type": "has_value",
     "verboseName": "is not empty",
   },
   Object {
-    "operands": 0,
+    "additionalArguments": 0,
+    "categoryName": "Has Attachment",
+    "initialArgument": "@input.attachments",
+    "type": "has_attachment",
+    "verboseName": "has an attachment",
+  },
+  Object {
+    "additionalArguments": 0,
     "type": "has_wait_timed_out",
     "verboseName": null,
     "visibility": Array [
@@ -182,7 +189,7 @@ Array [
     ],
   },
   Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_pattern",
     "verboseName": "matches regex",
   },
@@ -192,7 +199,7 @@ Array [
 exports[`Providers: ConfigProvider: operatorConfigs should provide operator config 2`] = `
 Object {
   "has_all_words": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_all_words",
     "verboseName": "has all of the words",
     "visibility": Array [
@@ -201,7 +208,7 @@ Object {
     ],
   },
   "has_any_word": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_any_word",
     "verboseName": "has any of the words",
     "visibility": Array [
@@ -209,14 +216,21 @@ Object {
       "messaging_offline",
     ],
   },
+  "has_attachment": Object {
+    "additionalArguments": 0,
+    "categoryName": "Has Attachment",
+    "initialArgument": "@input.attachments",
+    "type": "has_attachment",
+    "verboseName": "has an attachment",
+  },
   "has_beginning": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_beginning",
     "verboseName": "starts with",
   },
   "has_date": Object {
+    "additionalArguments": 0,
     "categoryName": "Has Date",
-    "operands": 0,
     "type": "has_date",
     "verboseName": "has a date",
     "visibility": Array [
@@ -225,7 +239,7 @@ Object {
     ],
   },
   "has_date_eq": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_date_eq",
     "verboseName": "has a date equal to",
     "visibility": Array [
@@ -234,7 +248,7 @@ Object {
     ],
   },
   "has_date_gt": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_date_gt",
     "verboseName": "has a date after",
     "visibility": Array [
@@ -243,7 +257,7 @@ Object {
     ],
   },
   "has_date_lt": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_date_lt",
     "verboseName": "has a date before",
     "visibility": Array [
@@ -252,8 +266,8 @@ Object {
     ],
   },
   "has_email": Object {
+    "additionalArguments": 0,
     "categoryName": "Has Email",
-    "operands": 0,
     "type": "has_email",
     "verboseName": "has an email",
     "visibility": Array [
@@ -262,8 +276,8 @@ Object {
     ],
   },
   "has_error": Object {
+    "additionalArguments": 0,
     "categoryName": "Has Error",
-    "operands": 0,
     "type": "has_error",
     "verboseName": "has an error",
     "visibility": Array [
@@ -271,7 +285,7 @@ Object {
     ],
   },
   "has_group": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_group",
     "verboseName": "is in the group",
     "visibility": Array [
@@ -279,43 +293,43 @@ Object {
     ],
   },
   "has_number": Object {
+    "additionalArguments": 0,
     "categoryName": "Has Number",
-    "operands": 0,
     "type": "has_number",
     "verboseName": "has a number",
   },
   "has_number_between": Object {
-    "operands": 2,
+    "additionalArguments": 2,
     "type": "has_number_between",
     "verboseName": "has a number between",
   },
   "has_number_eq": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_number_eq",
     "verboseName": "has a number equal to",
   },
   "has_number_gt": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_number_gt",
     "verboseName": "has a number above",
   },
   "has_number_gte": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_number_gte",
     "verboseName": "has a number at or above",
   },
   "has_number_lt": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_number_lt",
     "verboseName": "has a number below",
   },
   "has_number_lte": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_number_lte",
     "verboseName": "has a number at or below",
   },
   "has_only_phrase": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_only_phrase",
     "verboseName": "has only the phrase",
     "visibility": Array [
@@ -324,18 +338,18 @@ Object {
     ],
   },
   "has_pattern": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_pattern",
     "verboseName": "matches regex",
   },
   "has_phone": Object {
+    "additionalArguments": 0,
     "categoryName": "Has Phone",
-    "operands": 0,
     "type": "has_phone",
     "verboseName": "has a phone number",
   },
   "has_phrase": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_phrase",
     "verboseName": "has the phrase",
     "visibility": Array [
@@ -344,7 +358,7 @@ Object {
     ],
   },
   "has_run_status": Object {
-    "operands": 1,
+    "additionalArguments": 1,
     "type": "has_run_status",
     "verboseName": "has a run status of",
     "visibility": Array [
@@ -352,8 +366,8 @@ Object {
     ],
   },
   "has_text": Object {
+    "additionalArguments": 0,
     "categoryName": "Has Text",
-    "operands": 0,
     "type": "has_text",
     "verboseName": "has some text",
     "visibility": Array [
@@ -362,13 +376,13 @@ Object {
     ],
   },
   "has_value": Object {
+    "additionalArguments": 0,
     "categoryName": "Not Empty",
-    "operands": 0,
     "type": "has_value",
     "verboseName": "is not empty",
   },
   "has_wait_timed_out": Object {
-    "operands": 0,
+    "additionalArguments": 0,
     "type": "has_wait_timed_out",
     "verboseName": null,
     "visibility": Array [

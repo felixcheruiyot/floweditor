@@ -1,5 +1,4 @@
-import { Operator, Type } from '~/config';
-import { FlowTypes, FlowTypeVisibility } from '~/config/interfaces';
+import { FlowTypes, FlowTypeVisibility, Operator, Type } from '~/config/interfaces';
 
 export const filterOperators = (operators: Operator[], flowType: FlowTypes): Operator[] => {
     return filterVisibility(operators, flowType);

@@ -55,9 +55,7 @@ exports[`ResponseRouterForm initializes 1`] = `
         Object {
           "categoryName": "Red",
           "kase": Object {
-            "arguments": Array [
-              "red",
-            ],
+            "arguments": Array [],
             "category_uuid": "763e4844-3e1b-407a-a1b5-5fdfcd308b41",
             "type": "has_any_word",
             "uuid": "1e47a1e1-3c67-4df5-adf1-da542c789adb",
@@ -306,6 +304,7 @@ Array [
         "cases": Array [
           Object {
             "arguments": Array [
+              "@input",
               "red",
             ],
             "category_uuid": "a62e8284-49f8-4292-adbc-d5f6607f85c5",
@@ -313,6 +312,7 @@ Array [
           },
           Object {
             "arguments": Array [
+              "@input",
               "maroon",
             ],
             "category_uuid": "a62e8284-49f8-4292-adbc-d5f6607f85c5",
@@ -320,6 +320,7 @@ Array [
           },
           Object {
             "arguments": Array [
+              "@input",
               "green",
             ],
             "category_uuid": "9adce29f-da95-4182-9cb3-0f1e3bf714e5",
@@ -358,7 +359,6 @@ Array [
           },
         ],
         "default_category_uuid": "00dd2423-0a34-4ee2-b97d-839fb2d593ef",
-        "operand": "@input",
         "result_name": "Favorite Color",
         "type": "switch",
       },
@@ -370,7 +370,10 @@ Array [
     },
     "ui": Object {
       "config": Object {
-        "cases": Object {},
+        "router": Object {
+          "cases": Object {},
+          "operand": "@input",
+        },
       },
       "position": null,
       "type": "wait_for_response",
@@ -420,6 +423,7 @@ Array [
         "cases": Array [
           Object {
             "arguments": Array [
+              "@input",
               "@(datetime_add(today(), 5, \\"D\\"))",
             ],
             "category_uuid": "dd57500e-a8e8-4a98-8b5b-a33637523a8d",
@@ -439,7 +443,6 @@ Array [
           },
         ],
         "default_category_uuid": "3d8db86c-7279-4106-a388-3f143bd5623f",
-        "operand": "@input",
         "result_name": "Result",
         "type": "switch",
       },
@@ -450,12 +453,15 @@ Array [
     },
     "ui": Object {
       "config": Object {
-        "cases": Object {
-          "e81b3f1a-0863-4418-8a72-9c9f8aa72b7c": Object {
-            "arguments_1": Array [
-              "5",
-            ],
+        "router": Object {
+          "cases": Object {
+            "e81b3f1a-0863-4418-8a72-9c9f8aa72b7c": Object {
+              "arguments": Array [
+                "5",
+              ],
+            },
           },
+          "operand": "@input",
         },
       },
       "position": null,

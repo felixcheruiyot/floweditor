@@ -398,7 +398,10 @@ export const getRouterFormProps = (renderNode: RenderNode): RouterFormProps => (
     onClose: jest.fn(),
     onTypeChange: jest.fn(),
     typeConfig: determineTypeConfig({ originalNode: renderNode }),
-    assetStore: {},
+    assetStore: {
+        results: { type: AssetType.Result, items: {} },
+        fields: { type: AssetType.Field, items: {} }
+    },
     nodeSettings: {
         originalNode: renderNode,
         originalAction: null
@@ -486,7 +489,7 @@ export const createRoutes = (
         cases.push(createMatchCase(category));
     });
 
-    return resolveRoutes(cases, hasTimeout, null);
+    return resolveRoutes(cases, hasTimeout, null, DEFAULT_OPERAND);
 };
 
 export const createMatchRouter = (matches: string[], hasTimeout: boolean = false): RenderNode => {
@@ -608,11 +611,11 @@ export const createCategories = (names: string[]): { categories: Category[]; exi
         };
     });
 
-    const categories = exits.map((exit: Exit, index: number) => {
+    const categories = exits.map((e: Exit, index: number) => {
         return {
             name: names[index],
             uuid: utils.createUUID(),
-            exit_uuid: exit.uuid
+            exit_uuid: e.uuid
         };
     });
 

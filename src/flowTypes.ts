@@ -1,5 +1,6 @@
 import { Methods } from '~/components/flow/routers/webhook/helpers';
 import { FlowTypes, Operators, Types } from '~/config/interfaces';
+import { Asset } from '~/store/flowContext';
 
 export interface Languages {
     [iso: string]: string;
@@ -107,7 +108,6 @@ export interface Category {
 
 export interface SwitchRouter extends Router {
     cases: Case[];
-    operand: string;
     default_category_uuid: string;
 }
 
@@ -293,13 +293,24 @@ export interface Dimensions {
     height: number;
 }
 
+export interface CaseConfig {
+    [uuid: string]: { arguments: string[] };
+}
+
 export interface UIConfig {
-    [key: string]: any;
+    router?: {
+        cases?: CaseConfig;
+        operand?: string;
+        operandAsset?: Asset;
+    };
+    delimit?: {
+        index: number;
+        delimiter: string;
+    };
 }
 
 export interface UINode {
     position: FlowPosition;
-    // ui type, used for split by expression, contact field, etc
     type?: Types;
     config?: UIConfig;
 }

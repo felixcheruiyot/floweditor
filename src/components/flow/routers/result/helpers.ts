@@ -2,12 +2,14 @@ import { CaseProps } from '~/components/flow/routers/caselist/CaseList';
 import {
     createCaseProps,
     createRenderNode,
+    getInitialArgument,
     hasCases,
     resolveRoutes
 } from '~/components/flow/routers/helpers';
 import { SelectOption } from '~/components/form/select/SelectElement';
 import { DEFAULT_OPERAND } from '~/components/nodeeditor/constants';
 import { Types } from '~/config/interfaces';
+import { getType } from '~/config/typeConfigs';
 import { Router, RouterTypes, SwitchRouter } from '~/flowTypes';
 import { AssetStore, AssetType, RenderNode } from '~/store/flowContext';
 import { NodeEditorSettings, StringEntry } from '~/store/nodeEditor';
@@ -69,16 +71,16 @@ export const nodeToState = (
         }
 
         const config = settings.originalNode.ui.config;
-        if (config && config.operand) {
+        if (config && config.router.operandAsset) {
             result =
-                config.operand.id in assetStore.results.items
-                    ? assetStore.results.items[config.operand.id]
+                config.router.operandAsset.id in assetStore.results.items
+                    ? assetStore.results.items[config.router.operandAsset.id]
                     : null;
         }
 
         if (settings.originalNode.ui.type === Types.split_by_run_result_delimited) {
-            fieldNumber = config.index;
-            delimiter = config.delimiter;
+            fieldNumber = config.delimit.index;
+            delimiter = config.delimit.delimiter;
             shouldDelimit = true;
         }
     }
@@ -98,10 +100,27 @@ export const stateToNode = (
     settings: NodeEditorSettings,
     state: ResultRouterFormState
 ): RenderNode => {
+    const originalType = getType(settings.originalNode);
+    let initialArgument =
+        originalType === Types.split_by_run_result ||
+        originalType === Types.split_by_run_result_delimited
+            ? getInitialArgument(settings.originalNode)
+            : DEFAULT_OPERAND;
+
+    const asset = state.result.value;
+    if (asset.type === AssetType.URN) {
+        initialArgument = `@(format_urn(contact.urns.${asset.id}))`;
+    } else if (asset.type === AssetType.Field) {
+        initialArgument = `@contact.fields.${asset.id}`;
+    } else {
+        initialArgument = `@contact.${asset.id}`;
+    }
+
     const { cases, exits, defaultCategory: defaultExit, caseConfig, categories } = resolveRoutes(
         state.cases,
         false,
-        settings.originalNode.node
+        settings.originalNode.node,
+        initialArgument
     );
 
     const optionalRouter: Pick<Router, 'result_name'> = {};
@@ -110,23 +129,17 @@ export const stateToNode = (
     }
 
     let nodeType = Types.split_by_run_result;
-    let operand = DEFAULT_OPERAND;
-    const asset = state.result.value;
-    if (asset.type === AssetType.URN) {
-        operand = `@(format_urn(contact.urns.${asset.id}))`;
-    } else if (asset.type === AssetType.Field) {
-        operand = `@contact.fields.${asset.id}`;
-    } else {
-        operand = `@contact.${asset.id}`;
-    }
 
     const config: any = {
-        operand: {
-            id: asset.id,
-            type: asset.type,
-            name: asset.name
-        },
-        cases: caseConfig
+        router: {
+            operand: initialArgument,
+            operandAsset: {
+                id: asset.id,
+                type: asset.type,
+                name: asset.name
+            },
+            cases: caseConfig
+        }
     };
 
     if (state.shouldDelimit) {
@@ -140,7 +153,6 @@ export const stateToNode = (
         default_category_uuid: defaultExit,
         categories,
         cases,
-        operand,
         ...optionalRouter
     };
 

@@ -4,11 +4,13 @@ import { FieldRouterFormState } from '~/components/flow/routers/field/FieldRoute
 import {
     createCaseProps,
     createRenderNode,
+    getInitialArgument,
     hasCases,
     resolveRoutes
 } from '~/components/flow/routers/helpers';
 import { DEFAULT_OPERAND } from '~/components/nodeeditor/constants';
 import { Types } from '~/config/interfaces';
+import { getType } from '~/config/typeConfigs';
 import { Router, RouterTypes, SwitchRouter } from '~/flowTypes';
 import { AssetStore, AssetType, RenderNode } from '~/store/flowContext';
 import { NodeEditorSettings, StringEntry } from '~/store/nodeEditor';
@@ -35,9 +37,12 @@ export const nodeToState = (
             resultName = { value: router.result_name || '' };
         }
 
-        const operand = settings.originalNode.ui.config.operand;
-        const name = assetStore.fields ? assetStore.fields.items[operand.id].name : null;
-        field = { id: operand.id, type: operand.type, name };
+        const asset = settings.originalNode.ui.config.router.operandAsset;
+        const name =
+            assetStore.fields && asset.id in assetStore.fields.items
+                ? assetStore.fields.items[asset.id].name
+                : null;
+        field = { id: asset.id, type: asset.type, name };
     }
 
     return {
@@ -52,10 +57,25 @@ export const stateToNode = (
     settings: NodeEditorSettings,
     state: FieldRouterFormState
 ): RenderNode => {
+    let initialArgument =
+        getType(settings.originalNode) === Types.split_by_contact_field
+            ? getInitialArgument(settings.originalNode)
+            : DEFAULT_OPERAND;
+
+    const asset = state.field.value;
+    if (asset.type === AssetType.URN) {
+        initialArgument = `@(format_urn(contact.urns.${asset.id}))`;
+    } else if (asset.type === AssetType.Field) {
+        initialArgument = `@contact.fields.${asset.id}`;
+    } else {
+        initialArgument = `@contact.${asset.id}`;
+    }
+
     const { cases, exits, defaultCategory: defaultExit, caseConfig, categories } = resolveRoutes(
         state.cases,
         false,
-        settings.originalNode.node
+        settings.originalNode.node,
+        initialArgument
     );
 
     const optionalRouter: Pick<Router, 'result_name'> = {};
@@ -63,22 +83,11 @@ export const stateToNode = (
         optionalRouter.result_name = state.resultName.value;
     }
 
-    let operand = DEFAULT_OPERAND;
-    const asset = state.field.value;
-    if (asset.type === AssetType.URN) {
-        operand = `@(format_urn(contact.urns.${asset.id}))`;
-    } else if (asset.type === AssetType.Field) {
-        operand = `@contact.fields.${asset.id}`;
-    } else {
-        operand = `@contact.${asset.id}`;
-    }
-
     const router: SwitchRouter = {
         type: RouterTypes.switch,
         default_category_uuid: defaultExit,
         cases,
         categories,
-        operand,
         ...optionalRouter
     };
 
@@ -90,12 +99,15 @@ export const stateToNode = (
         [],
         null,
         {
-            operand: {
-                id: asset.id,
-                type: asset.type,
-                name: asset.name
-            },
-            cases: caseConfig
+            router: {
+                operand: initialArgument,
+                operandAsset: {
+                    id: asset.id,
+                    type: asset.type,
+                    name: asset.name
+                },
+                cases: caseConfig
+            }
         }
     );
 
